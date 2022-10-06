@@ -32,6 +32,22 @@ Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'auth'], function(
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
+// Category
+Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'category'], function() {
+    Route::get('list', [\App\Http\Controllers\CategoryController::class, 'getTypeCar']);
+    Route::post('create', [\App\Http\Controllers\CategoryController::class, 'createTypeCar']);
+    Route::put('edit/{id}', [\App\Http\Controllers\CategoryController::class, 'editTypeCar']);
+    Route::post('delete/{id}', [\App\Http\Controllers\CategoryController::class, 'deleteTypeCar']);
+});
+
+// Product
+Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'product'], function() {
+    Route::get('list', [\App\Http\Controllers\ProductController::class, 'getProduct']);
+    Route::post('create', [\App\Http\Controllers\ProductController::class, 'createProduct']);
+    Route::put('edit/{id}', [\App\Http\Controllers\ProductController::class, 'editProduct']);
+    Route::post('delete/{id}', [\App\Http\Controllers\ProductController::class, 'deleteProduct']);
+});
+
 // Staff
 Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'staff'], function() {
     Route::get('list', [StaffController::class, 'getStaff']);
@@ -97,12 +113,20 @@ Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'booking'], functi
 
 
 
-
-// Client-Customer
-Route::group(['prefix' => 'customer'], function() {
-    Route::post('create-customer', [CustomerController::class, 'createCustomer']);
-    Route::put('edit-customer/{id}', [CustomerController::class, 'editCustomer']);
+//Frontend
+Route::group(['prefix' => 'fe'], function() {
+    Route::post('register', [AuthController::class, 'registerFe']);
+    Route::post('login', [CustomerController::class, 'loginFe']);
+    // Client-Customer
+    Route::group(['prefix' => 'customer'], function() {
+        Route::post('create-customer', [CustomerController::class, 'createCustomerFE']);
+        Route::get('current-customer', [CustomerController::class, 'details'])->middleware('jwt.customers');
+        Route::put('update-customer/{id}', [CustomerController::class, 'updateCustomer'])->middleware('jwt.customers');
+        Route::post('logout', [CustomerController::class, 'loginFe']);
+    });
 });
+
+
 
 
 

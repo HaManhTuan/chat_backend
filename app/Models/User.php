@@ -30,6 +30,11 @@ class User extends Authenticatable implements JWTSubject
         'ACTIVE' => 1
     ];
 
+    const USER_IS_ROLE = [
+        'ADMIN' => 1,
+        'DEFAULT' => 0
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *

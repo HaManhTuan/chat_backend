@@ -44,4 +44,9 @@ class AuthController extends Controller
         auth()->logout();
         return response()->json([], Response::HTTP_OK);
     }
+
+    //Frontend
+    public function registerFe(LoginRequest $request) {
+        return $this->authService->registerFe($request->getData());
+    }
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Customer;
+namespace App\Http\Requests\Category;
 
 use App\Http\Requests\BaseRequest;
-use App\Rules\CheckAccessKey;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCustomerRequest extends BaseRequest
+class EditCategoryRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,13 +26,8 @@ class EditCustomerRequest extends BaseRequest
     {
         $id = $this->id ?? null;
         return [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'gender'  => 'nullable',
-            'old'  => 'nullable',
-            'email'  => 'required|unique:customers,email,'.$id,
-            'phone'  => 'required|unique:customers,phone,'.$id,
-            'address'  => 'required'
+            'name' => 'required|unique:categories,name,'.$id,
+            'description' => 'required',
         ];
     }
 }

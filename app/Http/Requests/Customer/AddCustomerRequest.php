@@ -25,25 +25,15 @@ class AddCustomerRequest extends BaseRequest
      */
     public function rules()
     {
-        $isBackend = $this->isBackEnd ?? null;
-        if($isBackend) {
-            return [
-                'name' => 'required',
-                'gender'  => 'required',
-                'old'  => 'required',
-                'phone'  => 'required|unique:customers',
-                'address'  => 'required'
-            ];
-        } else {
-            return [
-                'access_key' => ['required', new CheckAccessKey()],
-                'name' => 'required',
-                'gender'  => 'required',
-                'old'  => 'required',
-                'phone'  => 'required|unique:customers',
-                'address'  => 'required'
-            ];
-        }
-
+        return [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'gender'  => 'nullable',
+            'old'  => 'nullable',
+            'email'  => 'required|unique:customers',
+            'phone'  => 'required|unique:customers',
+            'address'  => 'nullable',
+            'password'  => 'bail|required|min:6'
+        ];
     }
 }

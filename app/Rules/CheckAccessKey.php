@@ -28,10 +28,7 @@ class CheckAccessKey implements Rule
     public function passes($attribute, $value)
     {
         $accessKey = config('application.access_key') ?? null;
-        if($accessKey && $value == $accessKey) {
-             return true;
-        }
-        return false;
+        return $accessKey && $value == $accessKey;
     }
 
     /**
