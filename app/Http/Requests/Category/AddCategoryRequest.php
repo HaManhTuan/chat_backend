@@ -25,8 +25,9 @@ class AddCategoryRequest extends BaseRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:name',
+            'name' => 'required|unique:categories',
             'description' => 'required',
+            'status' => 'required'
         ];
     }
 }

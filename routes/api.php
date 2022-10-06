@@ -34,10 +34,10 @@ Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'auth'], function(
 
 // Category
 Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'category'], function() {
-    Route::get('list', [\App\Http\Controllers\CategoryController::class, 'getTypeCar']);
-    Route::post('create', [\App\Http\Controllers\CategoryController::class, 'createTypeCar']);
-    Route::put('edit/{id}', [\App\Http\Controllers\CategoryController::class, 'editTypeCar']);
-    Route::post('delete/{id}', [\App\Http\Controllers\CategoryController::class, 'deleteTypeCar']);
+    Route::get('list', [\App\Http\Controllers\CategoryController::class, 'getCategory']);
+    Route::post('create', [\App\Http\Controllers\CategoryController::class, 'createCategory']);
+    Route::put('edit/{id}', [\App\Http\Controllers\CategoryController::class, 'editCategory']);
+    Route::post('delete/{id}', [\App\Http\Controllers\CategoryController::class, 'deleteCategory']);
 });
 
 // Product
@@ -47,69 +47,6 @@ Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'product'], functi
     Route::put('edit/{id}', [\App\Http\Controllers\ProductController::class, 'editProduct']);
     Route::post('delete/{id}', [\App\Http\Controllers\ProductController::class, 'deleteProduct']);
 });
-
-// Staff
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'staff'], function() {
-    Route::get('list', [StaffController::class, 'getStaff']);
-    Route::get('list-assistant-driver/{id}', [StaffController::class, 'getAssistantDriver']);
-    Route::post('create', [StaffController::class, 'createStaff']);
-    Route::put('edit/{id}', [StaffController::class, 'editStaff']);
-    Route::post('delete/{id}', [StaffController::class, 'deleteStaff']);
-});
-
-// Customer
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'customer'], function() {
-    Route::get('list', [CustomerController::class, 'getCustomer']);
-    Route::post('create', [CustomerController::class, 'createCustomerBE']);
-    Route::put('edit/{id}', [CustomerController::class, 'editCustomerBE']);
-    Route::post('delete/{id}', [CustomerController::class, 'deleteCustomer']);
-});
-
-// Type-Car
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'type-car'], function() {
-    Route::get('list', [TypeCarController::class, 'getTypeCar']);
-    Route::post('create', [TypeCarController::class, 'createTypeCar']);
-    Route::put('edit/{id}', [TypeCarController::class, 'editTypeCar']);
-    Route::post('delete/{id}', [TypeCarController::class, 'deleteTypeCar']);
-});
-
-// Car
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'car'], function() {
-    Route::get('list', [CarController::class, 'getCar']);
-    Route::post('create', [CarController::class, 'createCar']);
-    Route::put('edit/{id}', [CarController::class, 'editCar']);
-    Route::post('delete/{id}', [CarController::class, 'deleteCar']);
-});
-
-// Trip
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'trip'], function() {
-    Route::get('list', [TripController::class, 'getTrip']);
-    Route::post('create', [TripController::class, 'createTrip']);
-    Route::put('edit/{id}', [TripController::class, 'editTrip']);
-    Route::post('delete/{id}', [TripController::class, 'deleteTrip']);
-});
-
-// TripStaffCar
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'trip-staff-car'], function() {
-    Route::get('list', [TripCarStaffController::class, 'getList']);
-    Route::post('create', [TripCarStaffController::class, 'createData']);
-//    Route::put('edit/{id}', [TripController::class, 'editTrip']);
-//    Route::post('delete/{id}', [TripController::class, 'deleteTrip']);
-});
-
-//Schedules
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'schedule'], function() {
-    Route::get('list', [ScheduleController::class, 'getData']);
-    Route::post('create', [ScheduleController::class, 'createData']);
-    Route::put('edit/{id}', [ScheduleController::class, 'editData']);
-    Route::delete('delete/{id}', [ScheduleController::class, 'deleteData']);
-});
-
-//Bookings
-Route::group(['middleware' => 'jwt.authenticate', 'prefix' => 'booking'], function() {
-    Route::post('create', [\App\Http\Controllers\BookingController::class, 'booking']);
-});
-
 
 
 

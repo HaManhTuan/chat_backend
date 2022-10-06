@@ -28,6 +28,7 @@ class EditCategoryRequest extends BaseRequest
         return [
             'name' => 'required|unique:categories,name,'.$id,
             'description' => 'required',
+            'status' => 'required',
         ];
     }
 }
